@@ -1,0 +1,37 @@
+name: probe
+
+on:
+  push:
+    paths: [".github/workflows/probe.yml"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probe Bybit endpoints from the runner
+        run: |
+          {
+            echo "runner ip country: $(curl -s https://ipinfo.io/country || echo unknown)"
+            for host in api-demo.bybit.com api-testnet.bybit.com api.bybit.com api-demo.bytick.com api.bytick.com api-testnet.bytick.com; do
+              code=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 15 "https://$host/v5/position/list?category=linear&settleCoin=USDT" || echo ERR)
+              echo "== $host -> HTTP $code"
+              head -c 200 /tmp/body; echo
+            done
+          } > probe_result.txt
+          cat probe_result.txt
+
+      - name: Commit result
+        run: |
+          git config user.name probe
+          git config user.email probe@users.noreply.github.com
+          git add probe_result.txt
+          git commit -m "probe result [skip ci]" || true
+          git pull --rebase origin main || true
+          git push || true
