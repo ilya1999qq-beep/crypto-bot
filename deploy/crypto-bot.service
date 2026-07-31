@@ -1,0 +1,14 @@
+[Unit]
+Description=Bybit demo multi-agent trading bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/crypto-bot
+ExecStart=/home/ubuntu/crypto-bot/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
