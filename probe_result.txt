@@ -1,25 +1,31 @@
 runner ip country: US
-== api-demo.bybit.com -> HTTP 403
+== https://testnet.binancefuture.com/fapi/v1/time -> HTTP 200
+{"serverTime":1785542303755}
+== https://testnet.binance.vision/api/v3/time -> HTTP 451
 {
-   error:The Amazon CloudFront distribution is configured to block access from your country.
-}
-== api-testnet.bybit.com -> HTTP 403
-{
-     error:The Amazon CloudFront distribution is configured to block access from your country.
-}
-== api.bybit.com -> HTTP 403
-{
-    error:The Amazon CloudFront distribution is configured to block access from your country
-}
-== api-demo.bytick.com -> HTTP 000ERR
-{
-    error:The Amazon CloudFront distribution is configured to block access from your country
-}
-== api.bytick.com -> HTTP 403
-{
-    error:The Amazon CloudFront distribution is configured to block access from your country
-}
-== api-testnet.bytick.com -> HTTP 403
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
-<TITLE>ERROR
+  "code": 0,
+  "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received t
+== https://demo-futures.kraken.com/derivatives/api/v3/instruments/PI_XBTUSD -> HTTP 301
+<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>cloudflare</center>
+</body>
+</html>
+
+== https://api.bitget.com/api/v2/public/time -> HTTP 200
+{"code":"00000","msg":"success","requestTime":1785542304587,"data":{"serverTime":"1785542304588"}}
+== https://www.okx.com/api/v5/public/time -> HTTP 200
+{"code":"0","data":[{"ts":"1785542305016"}],"msg":""}
+== https://fx-api-testnet.gateio.ws/api/v4/futures/usdt/contracts/BTC_USDT -> HTTP 502
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>openresty</center>
+</body>
+</html>
+
+== https://testnet.bitmex.com/api/v1/announcement -> HTTP 200
+[{"id":927120320,"link":"https://www.bitmex.com/blog/delisting-jul2026-site","title":"35 Contracts Now Delisted ","content":"<p>As of 30 July 2026, we have delisted 35 derivatives contracts. You can f
