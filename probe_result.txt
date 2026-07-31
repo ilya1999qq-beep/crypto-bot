@@ -1,0 +1,25 @@
+runner ip country: US
+== api-demo.bybit.com -> HTTP 403
+{
+   error:The Amazon CloudFront distribution is configured to block access from your country.
+}
+== api-testnet.bybit.com -> HTTP 403
+{
+     error:The Amazon CloudFront distribution is configured to block access from your country.
+}
+== api.bybit.com -> HTTP 403
+{
+    error:The Amazon CloudFront distribution is configured to block access from your country
+}
+== api-demo.bytick.com -> HTTP 000ERR
+{
+    error:The Amazon CloudFront distribution is configured to block access from your country
+}
+== api.bytick.com -> HTTP 403
+{
+    error:The Amazon CloudFront distribution is configured to block access from your country
+}
+== api-testnet.bytick.com -> HTTP 403
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR
