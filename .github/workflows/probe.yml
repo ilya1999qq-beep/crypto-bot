@@ -15,15 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Probe Bybit endpoints from the runner
+      - name: Probe exchange demo endpoints from the runner
         run: |
+          probe() {
+            code=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 15 "$1" || echo ERR)
+            echo "== $1 -> HTTP $code"
+            head -c 200 /tmp/body; echo
+          }
           {
             echo "runner ip country: $(curl -s https://ipinfo.io/country || echo unknown)"
-            for host in api-demo.bybit.com api-testnet.bybit.com api.bybit.com api-demo.bytick.com api.bytick.com api-testnet.bytick.com; do
-              code=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 15 "https://$host/v5/position/list?category=linear&settleCoin=USDT" || echo ERR)
-              echo "== $host -> HTTP $code"
-              head -c 200 /tmp/body; echo
-            done
+            probe "https://testnet.binancefuture.com/fapi/v1/time"
+            probe "https://testnet.binance.vision/api/v3/time"
+            probe "https://demo-futures.kraken.com/derivatives/api/v3/instruments/PI_XBTUSD"
+            probe "https://api.bitget.com/api/v2/public/time"
+            probe "https://www.okx.com/api/v5/public/time"
+            probe "https://fx-api-testnet.gateio.ws/api/v4/futures/usdt/contracts/BTC_USDT"
+            probe "https://testnet.bitmex.com/api/v1/announcement"
           } > probe_result.txt
           cat probe_result.txt
 
