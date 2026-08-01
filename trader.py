@@ -147,6 +147,9 @@ class Trader:
         logger.info("closed position %s (%s qty=%s)", symbol, pos["side"], pos["qty"])
         return True
 
+    def cancel_stray_orders(self, symbol: str) -> None:
+        """No-op on Bybit: attached SL/TP die together with the position."""
+
     # ---------------------------------------------------------------- account
 
     def get_equity(self) -> float:

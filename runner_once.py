@@ -225,6 +225,7 @@ def trading_pass(cfg, journal, md, strategy, risk, trader) -> None:
     for symbol in journal.open_symbols():
         if symbol in positions:
             continue
+        trader.cancel_stray_orders(symbol)  # Binance: remove the surviving SL/TP twin
         since_ms = journal.open_trade_since_ms(symbol)
         pnl = trader.last_closed_pnl(symbol, since_ms)
         journal.log_close(symbol, None, pnl, "SL/TP на бирже")
@@ -351,14 +352,39 @@ def trading_pass(cfg, journal, md, strategy, risk, trader) -> None:
 
 # ----------------------------------------------------------------------- main
 
+def build_exchange(cfg):
+    """Return (market_data, trader, human-readable exchange name)."""
+    if cfg.exchange == "binance":
+        from exchange_binance import (
+            BinanceMarketData, BinanceTrader, create_session,
+        )
+        ex = create_session(cfg)
+        return BinanceMarketData(ex), BinanceTrader(ex, cfg), "Binance Futures Testnet"
+
+    from pybit.unified_trading import HTTP
+
+    session = HTTP(
+        demo=True, api_key=cfg.bybit_api_key, api_secret=cfg.bybit_api_secret
+    )
+    return MarketData(session), Trader(session, cfg), "Bybit DEMO"
+
+
 def main() -> int:
     setup_logging()
     cfg = Config()
 
-    missing = [
-        name for name, val in (
+    if cfg.exchange == "binance":
+        required = (
+            ("BINANCE_API_KEY", cfg.binance_api_key),
+            ("BINANCE_API_SECRET", cfg.binance_api_secret),
+        )
+    else:
+        required = (
             ("BYBIT_API_KEY", cfg.bybit_api_key),
             ("BYBIT_API_SECRET", cfg.bybit_api_secret),
+        )
+    missing = [
+        name for name, val in required + (
             ("TELEGRAM_TOKEN", cfg.telegram_token),
             ("TELEGRAM_CHAT_ID", cfg.telegram_chat_id),
         ) if not val
@@ -367,31 +393,25 @@ def main() -> int:
         print("Не заполнены переменные окружения: " + ", ".join(missing))
         return 1
 
-    from pybit.unified_trading import HTTP
-
-    session = HTTP(
-        demo=True, api_key=cfg.bybit_api_key, api_secret=cfg.bybit_api_secret
-    )
     journal = Journal(cfg.db_path)
-    md = MarketData(session)
+    md, trader, exchange_name = build_exchange(cfg)
     strategy = Strategy(cfg)
     risk = RiskManager(cfg, journal)
-    trader = Trader(session, cfg)
 
     started = datetime.now(timezone.utc).strftime("%H:%M")
     logger.info("single pass started at %s UTC", started)
 
-    # First-ever run: greet the owner once.
-    if journal.get_state("greeted") != "1":
+    # Greet the owner once (re-greet after an exchange switch).
+    if journal.get_state("greeted") != f"1:{cfg.exchange}":
         llm_txt = "вкл" if (cfg.llm_enabled and cfg.anthropic_api_key) else "выкл"
         tg_send(
             cfg,
-            "🤖 Бот запущен в облаке (GitHub Actions, Bybit DEMO)\n"
+            f"🤖 Бот запущен в облаке (GitHub Actions, {exchange_name})\n"
             f"Пары: {', '.join(cfg.symbols)}\n"
             f"Плечо: x{cfg.leverage} | Бюджет: {cfg.budget_usdt:.0f} USDT\n"
             f"Цикл: раз в ~15 минут | LLM: {llm_txt}\n\n" + HELP_TEXT,
         )
-        journal.set_state("greeted", "1")
+        journal.set_state("greeted", f"1:{cfg.exchange}")
 
     try:
         trader.setup()

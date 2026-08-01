@@ -15,13 +15,18 @@ class Config:
     # --- secrets: env only, never hardcode ---
     bybit_api_key: str = _env("BYBIT_API_KEY")
     bybit_api_secret: str = _env("BYBIT_API_SECRET")
+    binance_api_key: str = _env("BINANCE_API_KEY")
+    binance_api_secret: str = _env("BINANCE_API_SECRET")
     telegram_token: str = _env("TELEGRAM_TOKEN")
     telegram_chat_id: int = int(_env("TELEGRAM_CHAT_ID", "0") or 0)
     anthropic_api_key: str = _env("ANTHROPIC_API_KEY")
     llm_enabled: bool = _env("LLM_ENABLED", "0").lower() in ("1", "true", "yes")
 
     # --- trading ---
-    demo: bool = True                      # Bybit demo trading (api-demo.bybit.com)
+    # "bybit" = Bybit Demo (geo-blocked from US IPs, i.e. unusable on GitHub
+    # Actions runners) | "binance" = Binance USDT-M Futures Testnet
+    exchange: str = _env("EXCHANGE", "bybit").lower()
+    demo: bool = True                      # always a paper/demo environment
     symbols: tuple = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
     leverage: int = 3
     budget_usdt: float = 300.0             # virtual budget the bot is allowed to manage
