@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "*/15 * * * *"   # every ~15 minutes (GitHub may add a few minutes of delay)
   workflow_dispatch: {}       # manual run button
+  push:
+    branches: [main]          # a code update runs immediately on the NEW code
+                              # (state commits carry [skip ci], so no loop)
 
 concurrency:
   group: trading-bot
@@ -41,14 +44,20 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LLM_ENABLED: ${{ vars.LLM_ENABLED }}
-        run: python runner_once.py
+        # Keep a readable log of the pass. Secrets are masked in the Actions UI
+        # but NOT in files, and request errors can echo the bot-API URL, so the
+        # token is redacted before anything is written to disk.
+        run: |
+          python runner_once.py 2>&1 \
+            | sed -e "s|${TELEGRAM_TOKEN:-__nope__}|<TELEGRAM_TOKEN>|g" \
+            | tee last_run.log
 
       - name: Commit state (bot.db)
         if: always()
         run: |
           git config user.name "trading-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add bot.db
+          git add bot.db last_run.log
           if ! git diff --cached --quiet; then
             git commit -m "state update [skip ci]"
             git pull --rebase origin ${GITHUB_REF_NAME} || true
