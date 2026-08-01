@@ -28,9 +28,10 @@ jobs:
 
       - name: Run one trading pass
         env:
-          # Bybit is CloudFront-geo-blocked from US runner IPs; Binance testnet
-          # registration needs a Binance account -> OKX Demo Trading it is.
-          EXCHANGE: okx
+          # Every real demo venue is out of reach: Bybit is geo-blocked from US
+          # runner IPs, Binance testnet needs a Binance account, OKX/Bitget demo
+          # need identity verification. So: real prices, simulated fills.
+          EXCHANGE: paper
           OKX_API_KEY: ${{ secrets.OKX_API_KEY }}
           OKX_API_SECRET: ${{ secrets.OKX_API_SECRET }}
           OKX_PASSPHRASE: ${{ secrets.OKX_PASSPHRASE }}

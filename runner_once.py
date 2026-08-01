@@ -228,12 +228,12 @@ def trading_pass(cfg, journal, md, strategy, risk, trader) -> None:
         trader.cancel_stray_orders(symbol)  # Binance: remove the surviving SL/TP twin
         since_ms = journal.open_trade_since_ms(symbol)
         pnl = trader.last_closed_pnl(symbol, since_ms)
-        journal.log_close(symbol, None, pnl, "SL/TP на бирже")
+        journal.log_close(symbol, None, pnl, "сработал SL или TP")
         set_cooldown(cfg, journal, symbol)
         pnl_txt = (
             f"{'+' if pnl >= 0 else ''}{pnl:.2f} USDT" if pnl is not None else "н/д"
         )
-        tg_send(cfg, f"🎯 {symbol}: позиция закрыта на бирже по SL/TP, PnL {pnl_txt}")
+        tg_send(cfg, f"🎯 {symbol}: позиция закрыта по SL/TP, PnL {pnl_txt}")
         logger.info("reconciled exchange-closed position %s pnl=%s", symbol, pnl)
 
     # --- daily loss guard
@@ -352,8 +352,18 @@ def trading_pass(cfg, journal, md, strategy, risk, trader) -> None:
 
 # ----------------------------------------------------------------------- main
 
-def build_exchange(cfg):
+def build_exchange(cfg, journal):
     """Return (market_data, trader, human-readable exchange name)."""
+    if cfg.exchange == "paper":
+        from exchange_paper import PaperMarketData, PaperTrader, create_session
+
+        ex = create_session(cfg)
+        return (
+            PaperMarketData(ex),
+            PaperTrader(ex, cfg, journal),
+            "бумажная торговля (реальные цены, виртуальный счёт)",
+        )
+
     if cfg.exchange == "okx":
         from exchange_okx import OkxMarketData, OkxTrader, create_session
 
@@ -379,7 +389,9 @@ def main() -> int:
     setup_logging()
     cfg = Config()
 
-    if cfg.exchange == "okx":
+    if cfg.exchange == "paper":
+        required = ()   # no exchange account at all
+    elif cfg.exchange == "okx":
         required = (
             ("OKX_API_KEY", cfg.okx_api_key),
             ("OKX_API_SECRET", cfg.okx_api_secret),
@@ -406,7 +418,7 @@ def main() -> int:
         return 1
 
     journal = Journal(cfg.db_path)
-    md, trader, exchange_name = build_exchange(cfg)
+    md, trader, exchange_name = build_exchange(cfg, journal)
     strategy = Strategy(cfg)
     risk = RiskManager(cfg, journal)
 

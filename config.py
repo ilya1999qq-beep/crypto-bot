@@ -26,9 +26,10 @@ class Config:
     llm_enabled: bool = _env("LLM_ENABLED", "0").lower() in ("1", "true", "yes")
 
     # --- trading ---
-    # "bybit" = Bybit Demo (geo-blocked from US IPs, i.e. unusable on GitHub
-    # Actions runners) | "binance" = Binance USDT-M Futures Testnet (registration
-    # requires a Binance account) | "okx" = OKX Demo Trading
+    # "paper"   = real public prices, simulated fills, no exchange account
+    # "bybit"   = Bybit Demo (geo-blocked from US IPs -> unusable on GitHub Actions)
+    # "binance" = Binance USDT-M Futures Testnet (needs a Binance account)
+    # "okx"     = OKX Demo Trading (needs identity verification)
     exchange: str = _env("EXCHANGE", "bybit").lower()
     demo: bool = True                      # always a paper/demo environment
     symbols: tuple = ("BTCUSDT", "ETHUSDT", "SOLUSDT")
