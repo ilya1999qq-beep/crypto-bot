@@ -17,6 +17,9 @@ class Config:
     bybit_api_secret: str = _env("BYBIT_API_SECRET")
     binance_api_key: str = _env("BINANCE_API_KEY")
     binance_api_secret: str = _env("BINANCE_API_SECRET")
+    okx_api_key: str = _env("OKX_API_KEY")
+    okx_api_secret: str = _env("OKX_API_SECRET")
+    okx_passphrase: str = _env("OKX_PASSPHRASE")
     telegram_token: str = _env("TELEGRAM_TOKEN")
     telegram_chat_id: int = int(_env("TELEGRAM_CHAT_ID", "0") or 0)
     anthropic_api_key: str = _env("ANTHROPIC_API_KEY")
@@ -24,7 +27,8 @@ class Config:
 
     # --- trading ---
     # "bybit" = Bybit Demo (geo-blocked from US IPs, i.e. unusable on GitHub
-    # Actions runners) | "binance" = Binance USDT-M Futures Testnet
+    # Actions runners) | "binance" = Binance USDT-M Futures Testnet (registration
+    # requires a Binance account) | "okx" = OKX Demo Trading
     exchange: str = _env("EXCHANGE", "bybit").lower()
     demo: bool = True                      # always a paper/demo environment
     symbols: tuple = ("BTCUSDT", "ETHUSDT", "SOLUSDT")

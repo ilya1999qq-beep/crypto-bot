@@ -354,6 +354,12 @@ def trading_pass(cfg, journal, md, strategy, risk, trader) -> None:
 
 def build_exchange(cfg):
     """Return (market_data, trader, human-readable exchange name)."""
+    if cfg.exchange == "okx":
+        from exchange_okx import OkxMarketData, OkxTrader, create_session
+
+        ex = create_session(cfg)
+        return OkxMarketData(ex), OkxTrader(ex, cfg), "OKX Demo Trading"
+
     if cfg.exchange == "binance":
         from exchange_binance import (
             BinanceMarketData, BinanceTrader, create_session,
@@ -373,7 +379,13 @@ def main() -> int:
     setup_logging()
     cfg = Config()
 
-    if cfg.exchange == "binance":
+    if cfg.exchange == "okx":
+        required = (
+            ("OKX_API_KEY", cfg.okx_api_key),
+            ("OKX_API_SECRET", cfg.okx_api_secret),
+            ("OKX_PASSPHRASE", cfg.okx_passphrase),
+        )
+    elif cfg.exchange == "binance":
         required = (
             ("BINANCE_API_KEY", cfg.binance_api_key),
             ("BINANCE_API_SECRET", cfg.binance_api_secret),
