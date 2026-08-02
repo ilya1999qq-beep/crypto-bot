@@ -1,5 +1,5 @@
-2026-08-02 04:36:54 INFO    bot.runner: single pass started at 04:36 UTC
-2026-08-02 04:36:57 INFO    bot.strategy: BTCUSDT: score=17.0 action=hold position=None
-2026-08-02 04:36:57 INFO    bot.strategy: ETHUSDT: score=14.4 action=hold position=None
-2026-08-02 04:36:57 INFO    bot.strategy: SOLUSDT: score=22.1 action=hold position=None
-2026-08-02 04:36:57 INFO    bot.runner: single pass finished
+2026-08-02 07:15:42 INFO    bot.runner: single pass started at 07:15 UTC
+2026-08-02 07:15:44 INFO    bot.strategy: BTCUSDT: score=21.7 action=hold position=None
+2026-08-02 07:15:45 INFO    bot.strategy: ETHUSDT: score=13.4 action=hold position=None
+2026-08-02 07:15:45 INFO    bot.strategy: SOLUSDT: score=5.6 action=hold position=None
+2026-08-02 07:15:45 INFO    bot.runner: single pass finished
