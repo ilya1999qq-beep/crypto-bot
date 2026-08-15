@@ -1,8 +1,5 @@
-2026-08-15 14:37:21 INFO    bot.runner: single pass started at 14:37 UTC
-2026-08-15 14:37:23 INFO    bot.paper: paper SOLUSDT closed by SL at 75.39, pnl=-1.22
-2026-08-15 14:37:23 INFO    bot.runner: reconciled exchange-closed position SOLUSDT pnl=-1.222457249999973
-2026-08-15 14:37:24 INFO    bot.strategy: BTCUSDT: score=-9.3 action=hold position=None
-2026-08-15 14:37:24 INFO    bot.strategy: ETHUSDT: score=18.9 action=hold position=None
-2026-08-15 14:37:25 INFO    bot.strategy: SOLUSDT: score=35.2 action=long position=None
-2026-08-15 14:37:25 INFO    bot.runner: SOLUSDT in cooldown, skipping entry
-2026-08-15 14:37:25 INFO    bot.runner: single pass finished
+2026-08-15 14:56:50 INFO    bot.runner: single pass started at 14:56 UTC
+2026-08-15 14:56:53 INFO    bot.strategy: BTCUSDT: score=-7.2 action=hold position=None
+2026-08-15 14:56:54 INFO    bot.strategy: ETHUSDT: score=13.6 action=hold position=None
+2026-08-15 14:56:54 INFO    bot.strategy: SOLUSDT: score=32.1 action=hold position=None
+2026-08-15 14:56:54 INFO    bot.runner: single pass finished
