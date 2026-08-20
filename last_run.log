@@ -1,5 +1,8 @@
-2026-08-20 23:15:08 INFO    bot.runner: single pass started at 23:15 UTC
-2026-08-20 23:15:11 INFO    bot.strategy: BTCUSDT: score=24.8 action=hold position=Buy
-2026-08-20 23:15:11 INFO    bot.strategy: ETHUSDT: score=3.7 action=hold position=None
-2026-08-20 23:15:11 INFO    bot.strategy: SOLUSDT: score=10.1 action=hold position=Buy
-2026-08-20 23:15:12 INFO    bot.runner: single pass finished
+2026-08-20 23:41:14 INFO    bot.runner: single pass started at 23:41 UTC
+2026-08-20 23:41:16 INFO    bot.paper: paper BTCUSDT closed by TP at 73346.1, pnl=6.08
+2026-08-20 23:41:17 INFO    bot.runner: reconciled exchange-closed position BTCUSDT pnl=6.079599720000053
+2026-08-20 23:41:17 INFO    bot.strategy: BTCUSDT: score=40.0 action=long position=None
+2026-08-20 23:41:17 INFO    bot.runner: BTCUSDT in cooldown, skipping entry
+2026-08-20 23:41:18 INFO    bot.strategy: ETHUSDT: score=21.1 action=hold position=None
+2026-08-20 23:41:18 INFO    bot.strategy: SOLUSDT: score=41.6 action=hold position=Buy
+2026-08-20 23:41:18 INFO    bot.runner: single pass finished
