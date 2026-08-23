@@ -1,6 +1,8 @@
-2026-08-23 14:22:47 INFO    bot.runner: single pass started at 14:22 UTC
-2026-08-23 14:22:50 INFO    bot.strategy: BTCUSDT: score=52.3 action=hold position=Buy
-2026-08-23 14:22:50 INFO    bot.strategy: ETHUSDT: score=50.1 action=long position=None
-2026-08-23 14:22:50 INFO    bot.runner: ETHUSDT in cooldown, skipping entry
-2026-08-23 14:22:51 INFO    bot.strategy: SOLUSDT: score=30.8 action=hold position=None
-2026-08-23 14:22:51 INFO    bot.runner: single pass finished
+2026-08-23 14:46:07 INFO    bot.runner: single pass started at 14:46 UTC
+2026-08-23 14:46:09 INFO    bot.paper: paper BTCUSDT closed by SL at 77078.0, pnl=-2.83
+2026-08-23 14:46:10 INFO    bot.runner: reconciled exchange-closed position BTCUSDT pnl=-2.827982270000017
+2026-08-23 14:46:10 INFO    bot.strategy: BTCUSDT: score=33.5 action=hold position=None
+2026-08-23 14:46:10 INFO    bot.strategy: ETHUSDT: score=42.9 action=long position=None
+2026-08-23 14:46:10 INFO    bot.paper: paper opened Buy ETHUSDT qty=0.186 at 2426.62 sl=2394.57 tp=2460.57
+2026-08-23 14:46:11 INFO    bot.strategy: SOLUSDT: score=31.1 action=hold position=None
+2026-08-23 14:46:11 INFO    bot.runner: single pass finished
