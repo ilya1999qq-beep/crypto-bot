@@ -1,7 +1,3 @@
-2026-08-24 16:08:08 INFO    bot.runner: single pass started at 16:08 UTC
-2026-08-24 16:08:10 INFO    bot.paper: paper BTCUSDT closed by SL at 78895.7, pnl=-3.79
-2026-08-24 16:08:11 INFO    bot.paper: paper ETHUSDT closed by SL at 2494.78, pnl=-4.23
-2026-08-24 16:08:11 INFO    bot.runner: reconciled exchange-closed position BTCUSDT pnl=-3.788368360000016
-2026-08-24 16:08:11 INFO    bot.runner: reconciled exchange-closed position ETHUSDT pnl=-4.233804759999955
-2026-08-24 16:08:11 WARNING bot.runner: daily loss limit breached, bot paused
-2026-08-24 16:08:11 INFO    bot.runner: single pass finished
+2026-08-24 16:53:13 INFO    bot.runner: single pass started at 16:53 UTC
+2026-08-24 16:53:15 INFO    bot.runner: bot is paused, skipping trading pass
+2026-08-24 16:53:15 INFO    bot.runner: single pass finished
