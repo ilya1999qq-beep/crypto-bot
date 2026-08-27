@@ -1,3 +1,6 @@
-2026-08-26 23:49:20 INFO    bot.runner: single pass started at 23:49 UTC
-2026-08-26 23:49:22 INFO    bot.runner: bot is paused, skipping trading pass
-2026-08-26 23:49:22 INFO    bot.runner: single pass finished
+2026-08-27 05:30:29 INFO    bot.runner: single pass started at 05:30 UTC
+2026-08-27 05:30:32 INFO    bot.strategy: BTCUSDT: score=-17.2 action=hold position=None
+2026-08-27 05:30:32 INFO    bot.strategy: ETHUSDT: score=-0.1 action=hold position=None
+2026-08-27 05:30:32 INFO    bot.strategy: SOLUSDT: score=39.1 action=long position=None
+2026-08-27 05:30:33 INFO    bot.paper: paper opened Buy SOLUSDT qty=4.45 at 101.03 sl=100.03 tp=102.48
+2026-08-27 05:30:33 INFO    bot.runner: single pass finished
