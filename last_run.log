@@ -1,6 +1,7 @@
-2026-09-03 14:39:55 INFO    bot.runner: single pass started at 14:39 UTC
-2026-09-03 14:39:57 INFO    bot.strategy: BTCUSDT: score=33.9 action=hold position=None
-2026-09-03 14:39:58 INFO    bot.strategy: ETHUSDT: score=31.8 action=hold position=None
-2026-09-03 14:39:58 INFO    bot.strategy: SOLUSDT: score=50.1 action=long position=None
-2026-09-03 14:39:58 INFO    bot.paper: paper opened Buy SOLUSDT qty=4.38 at 102.42 sl=101.79 tp=103.94
-2026-09-03 14:39:59 INFO    bot.runner: single pass finished
+2026-09-03 18:03:22 INFO    bot.runner: single pass started at 18:03 UTC
+2026-09-03 18:03:24 INFO    bot.paper: paper SOLUSDT closed by TP at 103.94, pnl=6.21
+2026-09-03 18:03:26 INFO    bot.runner: reconciled exchange-closed position SOLUSDT pnl=6.205671599999983
+2026-09-03 18:03:26 INFO    bot.strategy: BTCUSDT: score=18.8 action=hold position=None
+2026-09-03 18:03:26 INFO    bot.strategy: ETHUSDT: score=22.8 action=hold position=None
+2026-09-03 18:03:27 INFO    bot.strategy: SOLUSDT: score=33.9 action=hold position=None
+2026-09-03 18:03:27 INFO    bot.runner: single pass finished
