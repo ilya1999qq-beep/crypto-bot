@@ -1,5 +1,8 @@
-2026-11-08 19:07:51 INFO    bot.runner: single pass started at 19:07 UTC
-2026-11-08 19:07:53 INFO    bot.strategy: BTCUSDT: score=-10.0 action=hold position=None
-2026-11-08 19:07:53 INFO    bot.strategy: ETHUSDT: score=-8.3 action=hold position=None
-2026-11-08 19:07:53 INFO    bot.strategy: SOLUSDT: score=4.9 action=hold position=None
-2026-11-08 19:07:53 INFO    bot.runner: single pass finished
+2026-11-08 22:51:07 INFO    bot.runner: single pass started at 22:51 UTC
+2026-11-08 22:51:09 INFO    bot.strategy: BTCUSDT: score=-50.3 action=short position=None
+2026-11-08 22:51:10 INFO    bot.paper: paper opened Sell BTCUSDT qty=0.006 at 74296.0 sl=74800.9 tp=73703.8
+2026-11-08 22:51:10 INFO    bot.strategy: ETHUSDT: score=-45.5 action=short position=None
+2026-11-08 22:51:10 INFO    bot.paper: paper opened Sell ETHUSDT qty=0.211 at 2120.8 sl=2149.18 tp=2081.24
+2026-11-08 22:51:11 INFO    bot.strategy: SOLUSDT: score=-44.8 action=short position=None
+2026-11-08 22:51:11 INFO    bot.runner: cannot open SOLUSDT: достигнут лимит открытых позиций (2)
+2026-11-08 22:51:12 INFO    bot.runner: single pass finished
