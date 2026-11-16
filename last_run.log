@@ -1,12 +1,7 @@
-2026-11-16 09:32:34 INFO    bot.runner: single pass started at 09:32 UTC
-2026-11-16 09:32:36 INFO    bot.paper: paper BTCUSDT closed by SL at 64957.5, pnl=-1.32
-2026-11-16 09:32:36 INFO    bot.paper: paper ETHUSDT closed by SL at 1819.48, pnl=-1.79
-2026-11-16 09:32:37 INFO    bot.runner: reconciled exchange-closed position BTCUSDT pnl=-1.31924101500002
-2026-11-16 09:32:37 INFO    bot.runner: reconciled exchange-closed position ETHUSDT pnl=-1.794489465000025
-2026-11-16 09:32:38 INFO    bot.strategy: BTCUSDT: score=-44.3 action=short position=None
-2026-11-16 09:32:38 INFO    bot.runner: BTCUSDT in cooldown, skipping entry
-2026-11-16 09:32:38 INFO    bot.strategy: ETHUSDT: score=-44.6 action=short position=None
-2026-11-16 09:32:38 INFO    bot.runner: ETHUSDT in cooldown, skipping entry
-2026-11-16 09:32:38 INFO    bot.strategy: SOLUSDT: score=-35.4 action=short position=None
-2026-11-16 09:32:38 INFO    bot.paper: paper opened Sell SOLUSDT qty=6.36 at 70.76 sl=71.45 tp=69.59
-2026-11-16 09:32:39 INFO    bot.runner: single pass finished
+2026-11-16 19:50:38 INFO    bot.runner: single pass started at 19:50 UTC
+2026-11-16 19:50:40 INFO    bot.paper: paper SOLUSDT closed by SL at 71.45, pnl=-4.84
+2026-11-16 19:50:41 INFO    bot.runner: reconciled exchange-closed position SOLUSDT pnl=-4.840627799999986
+2026-11-16 19:50:41 INFO    bot.strategy: BTCUSDT: score=4.4 action=hold position=None
+2026-11-16 19:50:42 INFO    bot.strategy: ETHUSDT: score=-12.6 action=hold position=None
+2026-11-16 19:50:42 INFO    bot.strategy: SOLUSDT: score=-14.7 action=hold position=None
+2026-11-16 19:50:42 INFO    bot.runner: single pass finished
