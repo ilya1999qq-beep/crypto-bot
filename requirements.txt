@@ -2,5 +2,5 @@ pybit>=5.7
 ccxt>=4.3
 aiogram>=3.13
 pandas>=2.0
-python-dotenv>=1.0
+python-dotenv>=1.2.4
 anthropic>=0.40
